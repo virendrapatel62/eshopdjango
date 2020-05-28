@@ -11,8 +11,11 @@
    
     <div class="col-lg-3 mx-auto">
       <div class="list-group">
+
+        <a href="/" class="list-group-item list-group-item-action">All Products</a>
+
         {% for category in categories %}
-        <a href="#" class="list-group-item list-group-item-action">{{category.name}}</a>
+        <a href="/?category={{category.id}}" class="list-group-item list-group-item-action">{{category.name}}</a>
         {% endfor %}
       </div>
     </div>
