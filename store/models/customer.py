@@ -11,3 +11,4 @@ class Customer(models.Model):
     def register(self):
         self.save()
 
+    
