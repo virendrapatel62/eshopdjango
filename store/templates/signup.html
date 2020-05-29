@@ -8,12 +8,19 @@
         <div class="col-lg-5 mx-auto border rounded pt-4">
             <h3 class="alert alert-light border rounded">Create An Account</h3>
             <form action="/signup" method="POST">
+                
                 {% csrf_token %}
+
+                {% if error%}
+                <div class="alert alert-danger" role="alert">
+                    {{error}}
+                </div>
+                {% endif %}
                 <!-- firstname -->
                 <div class="form-group">
                     <label for="">First Name</label>
                     <input type="text" name="firstname"
-                     id="" class="form-control form-control-sm" 
+                     id="" value="{{values.first_name}}" class="form-control form-control-sm" 
                      placeholder="">
                 </div>
 
@@ -21,7 +28,7 @@
                 <div class="form-group">
                     <label for="">Last Name</label>
                     <input type="text" name="lastname" 
-                    id="" class="form-control form-control-sm"
+                    id="" value="{{values.last_name}}" class="form-control form-control-sm"
                     >
                 </div>
 
@@ -30,14 +37,16 @@
                     <label for="">Phone</label>
                     <input type="text" name="phone" 
                     id="" class="form-control form-control-sm"
+                    value="{{values.phone}}"
                     placeholder="565698959"
                     >
                 </div>
                 <!-- email -->
                 <div class="form-group">
                     <label for="">Email</label>
-                    <input type="email" name="email" id=""
-                     class=" form-control-sm form-control" placeholder="example@gmail.com">
+                    <input required type="email" name="email" id=""
+                    value="{{values.email}}" 
+                    class=" form-control-sm form-control" placeholder="example@gmail.com">
                 </div>
 
 

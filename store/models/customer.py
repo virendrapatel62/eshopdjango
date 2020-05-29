@@ -1,5 +1,5 @@
 from django.db import  models
-from django.core.validators import  MinLengthValidator
+from django.core.validators import MinLengthValidator
 
 class Customer(models.Model):
     first_name = models.CharField(max_length=50)
