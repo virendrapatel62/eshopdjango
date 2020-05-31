@@ -2,13 +2,14 @@
 
 {% block content %}
 
+{% load cart %}
 <!-- body -->
 <div class="container-fluid mt-3">
   <div class="row">
-    
+
 
     <!-- filter -->
-   
+
     <div class="col-lg-3 mx-auto">
       <div class="list-group">
 
@@ -29,15 +30,29 @@
           <div class="card-body">
             <p class="card-title">{{product.name}}</p>
             <p class="card-text"><b>{{product.price}}</b></p>
+            <!-- {{product | is_in_cart:request.session.cart }} -->
 
-            <form action="/" method="POST">
-              {% csrf_token %}
-              <input hidden type="text" name='product' value='{{product.id}}'>
-            <input type="submit" class="float-right btn btn-light border btn-sm" value="Add To Cart">
-
-            </form>
 
           </div>
+
+          <div class="card-footer p-0 no-gutters">
+
+            {% if product|is_in_cart:request.session.cart %}
+            <div class="row no-gutters">
+              <input type="submit" value=" - " class="col-2 btn btn-block btn-secondary">
+              <div class="text-center col">2 in Cart</div>
+              <input type="submit" value=" + " class="col-2 btn btn-block btn-secondary">
+            </div>
+            {% else %}
+            <form action="/" method="POST" class="btn-block">
+              {% csrf_token %}
+              <input hidden type="text" name='product' value='{{product.id}}'>
+              <input type="submit" class="float-right btn btn-light border form-control" value="Add To Cart">
+            </form>
+            {% endif %}
+            
+          </div>
+
         </div>
         {% endfor %}
       </div>
