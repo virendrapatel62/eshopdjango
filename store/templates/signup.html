@@ -3,10 +3,22 @@
 
 {% block content %}
 
-<div class="container">
+<div class="container mt-4">
+    
     <div class="p-4 m-4">
-        <div class="col-lg-5 mx-auto border rounded pt-4">
-            <h3 class="alert alert-light border rounded">Create An Account</h3>
+
+        
+        <div class="col-lg-5 rounded mx-auto border pt-4">
+            <div class="text-center col">
+            
+                <img 
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Shopping_cart_with_food_clip_art_2.svg/307px-Shopping_cart_with_food_clip_art_2.svg.png" alt=""
+                class="" style="height: 150px;">
+            <!-- <hr> -->
+            <div class="display-8">Create An Account</div>
+            <hr>
+            </div>
+            <h3 hidden class="alert alert-light border rounded">Create An Account</h3>
             <form action="/signup" method="POST">
                 
                 {% csrf_token %}
@@ -59,6 +71,7 @@
                      class="form-control form-control-sm" placeholder="********">
                 </div>
 
+                <hr>
                 <div class="form-group">
                     <input class="btn btn-sm btn-info" type="submit" value="Create An Account ">
                 </div>

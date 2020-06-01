@@ -3,6 +3,7 @@ from store.models.product import Product
 from store.models.category import Category
 from django.views import View
 
+
 # Create your views here.
 class Index(View):
 
@@ -34,23 +35,25 @@ class Index(View):
 
 
     def get(self , request):
-        cart = request.session.get('cart')
-        if not cart:
-            request.session['cart'] = {}
-        products = None
-        categories = Category.get_all_categories()
-        categoryID = request.GET.get('category')
-        if categoryID:
-            products = Product.get_all_products_by_categoryid(categoryID)
-        else:
-            products = Product.get_all_products();
+        return redirect('store')
 
-        data = {}
-        data['products'] = products
-        data['categories'] = categories
+def store(request):
+    cart = request.session.get('cart')
+    if not cart:
+        request.session['cart'] = {}
+    products = None
+    categories = Category.get_all_categories()
+    categoryID = request.GET.get('category')
+    if categoryID:
+        products = Product.get_all_products_by_categoryid(categoryID)
+    else:
+        products = Product.get_all_products();
 
-        print('you are : ', request.session.get('email'))
-        return render(request, 'index.html', data)
+    data = {}
+    data['products'] = products
+    data['categories'] = categories
 
+    print('you are : ', request.session.get('email'))
+    return render(request, 'index.html', data)
 
 
