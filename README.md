@@ -17,3 +17,24 @@
 ### Install package by following below command
 
 ```python -m pip install <PACKAGENAME>```
+
+### Enable mongoDB
+
+```pip install djongo```
+
+### Update connection string **settings.py**
+
+```
+DATABASES = {
+    'default': {
+        'ENGINE': 'djongo',
+        'NAME': 'MySampleDB',
+        'HOST':'localhost:27017',
+        'USER':'',
+        'PASSWORD':''
+    }
+}
+```
+
+Migrate one time only
+ ``` py manage.py migrate ```
