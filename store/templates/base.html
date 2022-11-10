@@ -5,6 +5,7 @@
    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
    <link href="https://fonts.googleapis.com/css?family=Playfair+Display&display=swap" rel="stylesheet">
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
    <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
    <title>Shopping Cart</title>
@@ -24,7 +25,55 @@ text-decoration: underline;
 font-weight: bold;
 font-size: 16px;
 color:black
- }  </style> </head>  
+ } 
+ footer {
+      padding: 0px 0px 0px 0px;
+      background-color: black;
+      margin: 0px;
+  
+    }
+
+    .fa {
+      padding: 10px;
+      font-size: 23px;
+      width: 40px;
+      text-align: center;
+      text-decoration: none;
+      margin: 5px 2px;
+      border-radius: 50%;
+    }
+
+    .fa:hover {
+      opacity: 0.5;
+      text-decoration: none;
+    }
+
+    .fa-facebook {
+      background: #3B5998;
+      color: white;
+      margin-top: 30px;
+    }
+
+    .fa-whatsapp {
+      background: #25d366;
+      color: white;
+    }
+
+    .fa-twitter {
+      background: #55ACEE;
+      color: white;
+    }
+
+    .fa-instagram {
+      background: #125688;
+      color: white;
+    }
+
+    p {
+      text-align: center;
+
+    } 
+ </style> </head>  
 <body>
 <!-- Nav Bar -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -68,7 +117,28 @@ color:black
 </nav>
 {%block content%}
 {%endblock%}
-
+<footer>
+	<br>
+  
+	<p>
+	  <a href="#" class="fa fa-facebook"></a>
+	  <a href="#" class="fa fa-whatsapp"></a>
+	  <a href="#" class="fa fa-instagram"></a>
+	  <a href="#" class="fa fa-twitter"></a>
+	</p>
+  
+	<br>
+	<div class="container">
+	  <div class="row">
+		<div class="col-md-12 col-sm-12">
+		  <div style="color:#ffffff;" class="wow fadeInUp footer-copyright">
+			<p>Shopify : An Ecommerce site to cater to all your fashion needs!<br>
+			  &copy; 2022 Developed By Mrunmayee Jakate and Prajna Puthran </p>
+		  </div>
+		</div>
+	  </div>
+	</div>
+  </footer>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
 integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"  crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"    crossorigin="anonymous"></script>
