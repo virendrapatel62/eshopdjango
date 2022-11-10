@@ -4,6 +4,73 @@
 
 {% load cart %}
 {% load custom_filter %}
+<style>
+	@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap");
+
+.cardBox {
+  width: 300px;
+  height: 400px;
+  position: relative;
+  display: inline-flex;
+  place-items: center;
+  overflow: hidden;
+  margin: 30px;
+  border-radius: 30px;
+}
+.card {
+  position: absolute;
+  width: 95%;
+  height: 95%;
+  background:white;
+  border-radius: 20px;
+  z-index: 5;
+  display: inline-block;
+  align-items: center;
+  flex-direction: initial;
+  text-align: center;
+  color: black;
+  overflow: hidden;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.card .content {
+  transform: translateY(100%);
+  opacity: 0;
+  transition: 0.3s ease-in-out;
+}
+
+.card:hover .content {
+  transform: translateY(0);
+  opacity: 1;
+  width: 100%;
+  font-size: 13px;
+  font-weight: 400;
+
+}
+
+.cardBox::before {
+  content: "";
+  position: absolute;
+  width: 40%;
+  height: 160%;
+  background: black;
+  background: -webkit-linear-gradient(to right, black);
+  background: linear-gradient(to right,black);
+  animation: glowing01 5s linear infinite;
+  transform-origin: center;
+  animation: glowing 5s linear infinite;
+}
+@keyframes glowing {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+</style>
 <!-- body -->
 <div class="container-fluid mt-3">
 	<div class="row">
@@ -25,15 +92,15 @@
 
 		<!-- all products -->
 		<div id='products' class="col-lg-9 mx-auto">
-			<div class="row mx-auto">
-				{% for product in products %}
-				<div class="card mx-auto mb-3" id={{product.id}} style="width: 18rem;">
-					<img class="card-img-top" src="{{product.image.url}}" alt="Card image cap">
-					<div class="card-body">
+			{% for product in products %}
+			<div class="cardBox">
+				<div class="card" id={{product.id}} style="width: 18rem;">
+					<img class="card-img-top" style="width: 70%;height: 70%;"src="{{product.image.url}}" alt="Card image cap">
+					<div class="content">
 						<p class="card-title">{{product.name}}</p>
 						<p class="card-text"><b>{{product.price|currency}}</b></p>
 						<!-- {{product | is_in_cart:request.session.cart }} -->
-					</div>
+					
 
 					<div class="card-footer p-0 no-gutters">
 
@@ -62,11 +129,34 @@
 						{% endif %}
 
 					</div>
-
+                </div>
 				</div>
-				{% endfor %}
+				
 			</div>
+			{% endfor %}
 		</div>
 	</div>
 </div>
 {% endblock %}
+<footer>
+	<br>
+  
+	<p>
+	  <a href="#" class="fa fa-facebook"></a>
+	  <a href="#" class="fa fa-whatsapp"></a>
+	  <a href="#" class="fa fa-instagram"></a>
+	  <a href="#" class="fa fa-twitter"></a>
+	</p>
+  
+	<br>
+	<div class="container">
+	  <div class="row">
+		<div class="col-md-12 col-sm-12">
+		  <div style="color:#ffffff;" class="wow fadeInUp footer-copyright">
+			<p>Shopify : A Ecommerce site to cater to all your needs<br>
+			  &copy; 2022 Developed By Mrunmayee Jakate and Prajna Puthran </p>
+		  </div>
+		</div>
+	  </div>
+	</div>
+  </footer>
