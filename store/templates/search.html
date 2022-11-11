@@ -1,0 +1,162 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% load cart %}
+{% load custom_filter %}
+
+
+<style>
+	@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap");
+.cardBox {
+  width: 300px;
+  height: 400px;
+  position: relative;
+  display: inline-flex;
+  place-items: center;
+  overflow: hidden;
+  margin: 30px;
+  border-radius: 30px;
+}
+.card {
+  position: absolute;
+  width: 95%;
+  height: 95%;
+  background:white;
+  border-radius: 20px;
+  z-index: 5;
+  display: inline-block;
+  align-items: center;
+  flex-direction: initial;
+  text-align: center;
+  color: black;
+  overflow: hidden;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.card .content {
+  transform: translateY(100%);
+  opacity: 0;
+  transition: 0.3s ease-in-out;
+}
+
+.card:hover .content {
+  transform: translateY(0);
+  opacity: 1;
+  width: 100%;
+  font-size: 13px;
+  font-weight: 400;
+
+}
+
+.cardBox::before {
+  content: "";
+  position: absolute;
+  width: 40%;
+  height: 160%;
+  background: black;
+background: -webkit-linear-gradient(to right, black);
+background: linear-gradient(to right,black);
+  animation: glowing01 5s linear infinite;
+  transform-origin: center;
+  animation: glowing 5s linear infinite;
+}
+
+@keyframes glowing {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+</style>
+<!-- body -->
+<div class="container-fluid mt-3">
+	<div class="row">
+
+
+		<!-- filter -->
+
+		<div class="col-lg-3 mx-auto">
+			<div class="list-group">
+
+				<a href="/" class="list-group-item list-group-item-action">All Products</a>
+
+				{% for category in categories %}
+				<a href="/?category={{category.id}}"
+					class="list-group-item list-group-item-action">{{category.name}}</a>
+				{% endfor %}
+			</div>
+		</div>
+		<!-- all products -->
+		<div id='products' class="col-lg-9 mx-auto">
+			<p style="font-size: 20px;font-family:'Playfair Display';font-weight:bold">Search results for {{request.GET.q}}</p>
+			{% for product in data %}
+			<div class="cardBox">
+				<div class="card" id={{product.id}} style="width: 18rem;">
+					<img class="card-img-top" style="width: 70%;height: 70%;"src="{{product.image.url}}" alt="Card image cap">
+					<div class="content">
+						<p class="card-title">{{product.name}}</p>
+						<p class="card-text"><b>{{product.price|currency}}</b></p>
+						<!-- {{product | is_in_cart:request.session.cart }} -->
+					
+
+					<div class="card-footer p-0 no-gutters">
+
+						{% if product|is_in_cart:request.session.cart %}
+						<div class="row no-gutters">
+							<form action="/#{{product.id}}" class="col-2 " method="post">
+								{% csrf_token %}
+								<input hidden type="text" name='product' value='{{product.id}}'>
+								<input hidden type="text" name='remove' value='True'>
+								<input type="submit" value=" - " class="btn btn-block btn-light border-right">
+							</form>
+							<div class="text-center col">{{product|cart_quantity:request.session.cart}} in Cart</div>
+							<form action="/#{{product.id}}" class="col-2 " method="post">
+								{% csrf_token %}
+								<input hidden type="text" name='product' value='{{product.id}}'>
+								<input type="submit" value=" + " class="btn btn-block btn-light border-left">
+							</form>
+						</div>
+						{% else %}
+						<form action="/#{{product.id}}" method="POST" class="btn-block">
+							{% csrf_token %}
+							<input hidden type="text" name='product' value='{{product.id}}'>
+							<input type="submit" class="float-right btn btn-light  form-control"
+								value="Add To Cart">
+						</form>
+						{% endif %}
+
+					</div>
+                </div>
+				</div>
+				
+			</div>
+			{% endfor %}
+		</div>
+	</div>
+</div>
+{% endblock %}
+<footer>
+	<br>
+	<p>
+	  <a href="#" class="fa fa-facebook"></a>
+	  <a href="#" class="fa fa-whatsapp"></a>
+	  <a href="#" class="fa fa-instagram"></a>
+	  <a href="#" class="fa fa-twitter"></a>
+	</p>
+	<br>
+	<div class="container">
+	  <div class="row">
+		<div class="col-md-12 col-sm-12">
+		  <div style="color:#ffffff;" class="wow fadeInUp footer-copyright">
+			<p>Shopify : A Ecommerce site to cater to all your needs<br>
+			  &copy; 2022 Developed By Mrunmayee Jakate and Prajna Puthran </p>
+		  </div>
+		</div>
+	  </div>
+	</div>
+  </footer>
