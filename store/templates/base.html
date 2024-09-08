@@ -1,100 +1,162 @@
-<!doctype html>
 <html lang="en">
-
 <head>
-  <!-- Required meta tags -->
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+   <!-- Required meta tags -->
+   <meta charset="utf-8">
+   <!-- CSS only -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+   <link href="https://fonts.googleapis.com/css?family=Playfair+Display&display=swap" rel="stylesheet">
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+   <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
+   <title>Shopping Cart</title>
+   <style>
+ .btn-dark{
+ background-color:black;
+ color:white;
+ }
+ .navbar-brand{
+font-family: Playfair Display;
+font-weight: bold;
+font-size: 32px;
 
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
-  <title>Hello, world!</title>
-
-  <style>
-    nav{
-      background-color: white;
+text-decoration: underline;
+ }
+ .nav-link{
+ font-family: Playfair Display;
+font-weight: bold;
+font-size: 16px;
+color:black
+ } 
+    /*---------------------------------------
+   Social section
+-----------------------------------------*/
+    footer {
+      padding: 0px 0px 0px 0px;
+      background-color: black;
+      margin: 0px;
+  
     }
-    .one-edge-shadow {
-              box-shadow: 0 8px 2px -5px rgb(246, 245, 245);
-}
-.display-8{
-  font-weight: 200;
-  font-size: 30px;
-}
-  </style>
-</head>
 
+    .fa {
+      padding: 10px;
+      font-size: 23px;
+      width: 40px;
+      text-align: center;
+      text-decoration: none;
+      margin: 5px 2px;
+      border-radius: 50%;
+    }
+
+    .fa:hover {
+      opacity: 0.5;
+      text-decoration: none;
+    }
+
+    .fa-facebook {
+      background: #3B5998;
+      color: white;
+      margin-top: 30px;
+    }
+
+    .fa-whatsapp {
+      background: #25d366;
+      color: white;
+    }
+
+    .fa-twitter {
+      background: #55ACEE;
+      color: white;
+    }
+
+    .fa-instagram {
+      background: #125688;
+      color: white;
+    }
+
+    p {
+      text-align: center;
+
+    }
+     </style> </head>  
 <body>
+<!-- Nav Bar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+   <a class="navbar-brand" href="/"> Shopify </a>
+   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+           aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+       <span class="navbar-toggler-icon"></span>
+   </button>
 
-  <!-- navbar -->
+   <div class="collapse navbar-collapse" id="navbarSupportedContent">
+       <ul class="navbar-nav ml-auto my-2 my-lg-0">
+        <form class="form-inline my-2 my-lg-0" action="/search">
+          <div class="input-group">
+            <input type="text" name="q" class="form-control" placeholder="Search for any product" />
+            <div class="input-group-append">
+              <button class="btn btn-outline-secondary" type="submit">Search</button>
+            </div>
+          </div>
+          
+        </form>
+           {% if request.session.customer %}
+           <li class="nav-item">
+               <a class="nav-link" href="/orders">Orders</a>
+           </li>
+           <li class="nav-item">
+               <a class="nav-link" href="/cart">Cart
+                   <span class="badge badge-dark">{{request.session.cart.keys|length}}</span>
+                   <span class="sr-only">(current)</span>
+               </a>
 
-  <nav class="one-edge-shadow 
-  sticky-top navbar 
-  navbar-expand-lg
-   navbar-light bg-white">
-    <a class="navbar-brand" href="/">E-Shop</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+           </li>
+           <li class="nav-item ">
+               <a class="nav-link" href="/logout">Logout<span class="sr-only">(current)</span></a>
+           </li>
+           {% else %}
+           <li class="nav-item">
+               <a class="nav-link" href="/cart">Cart</a>
+           </li>
+           <li class="nav-item">
+               <a class="nav-link" href="/signup">Signup</a>
+           </li>
+           <li class="nav-item">
+               <a class="nav-link disabled" href="/login">Login</a>
+           </li>
+           {%endif%}
+       </ul>
+       <form class="form-inline my-2 my-lg-0">
+       </form>
+   </div>
+</nav>
+{%block content%}
+{%endblock%}
+<footer>
+	<br>
+	<p>
+	  <a href="#" class="fa fa-facebook"></a>
+	  <a href="#" class="fa fa-whatsapp"></a>
+	  <a href="#" class="fa fa-instagram"></a>
+	  <a href="#" class="fa fa-twitter"></a>
+	</p>
+  
+	<br>
+	<div class="container">
+	  <div class="row">
+		<div class="col-md-12 col-sm-12">
+		  <div style="color:#ffffff;" class="wow fadeInUp footer-copyright">
+			<p>Shopify : An Ecommerce site to cater to all your fashion needs!<br>
+			  &copy; 2022 Developed By Mrunmayee Jakate and Prajna Puthran </p>
+		  </div>
+		</div>
+	  </div>
+	</div>
+  </footer>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="/store">Store <span class="sr-only">(current)</span></a>
-        </li>
-
-      </ul>
-
-
-      <ul class=" navbar-nav my-2 my-lg-0">
-        <li class="nav-item ">
-          <a class="nav-link" href="/cart">Cart 
-            <span class="badge badge-info">{{request.session.cart.keys|length}}</span>
-            <span class="sr-only">(current)</span></a>
-        </li>
-        {% if request.session.customer %}
-        
-        <li class="nav-item ">
-          <a class="nav-link" href="/orders">Orders<span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item ">
-          <a class="nav-link" href="/logout">Logout<span class="sr-only">(current)</span></a>
-        </li>
-        {% else %}
-       
-        <li class="nav-item ">
-          <a class="nav-link" href="/signup">Signup<span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item ">
-          <a class="nav-link" href="/login">Login<span class="sr-only">(current)</span></a>
-        </li>
-        {% endif %}
-
-
-
-      </ul>
-
-
-    </div>
-  </nav>
-
-
-    {% block content %}{% endblock %}
-
-  <!-- Optional JavaScript -->
-  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-    crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-    crossorigin="anonymous"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-    crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"  crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"    crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"   integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"  crossorigin="anonymous"></script>
 </body>
-
 </html>

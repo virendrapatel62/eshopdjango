@@ -4,9 +4,10 @@
 
 {% load cart %}
 {% load custom_filter %}
+
+
 <style>
 	@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap");
-
 .cardBox {
   width: 300px;
   height: 400px;
@@ -55,12 +56,13 @@
   width: 40%;
   height: 160%;
   background: black;
-  background: -webkit-linear-gradient(to right, black);
-  background: linear-gradient(to right,black);
+background: -webkit-linear-gradient(to right, black);
+background: linear-gradient(to right,black);
   animation: glowing01 5s linear infinite;
   transform-origin: center;
   animation: glowing 5s linear infinite;
 }
+
 @keyframes glowing {
   0% {
     transform: rotate(0);
@@ -89,10 +91,10 @@
 				{% endfor %}
 			</div>
 		</div>
-
 		<!-- all products -->
 		<div id='products' class="col-lg-9 mx-auto">
-			{% for product in products %}
+			<p style="font-size: 20px;font-family:'Playfair Display';font-weight:bold">Search results for {{request.GET.q}}</p>
+			{% for product in data %}
 			<div class="cardBox">
 				<div class="card" id={{product.id}} style="width: 18rem;">
 					<img class="card-img-top" style="width: 70%;height: 70%;"src="{{product.image.url}}" alt="Card image cap">
@@ -140,14 +142,12 @@
 {% endblock %}
 <footer>
 	<br>
-  
 	<p>
 	  <a href="#" class="fa fa-facebook"></a>
 	  <a href="#" class="fa fa-whatsapp"></a>
 	  <a href="#" class="fa fa-instagram"></a>
 	  <a href="#" class="fa fa-twitter"></a>
 	</p>
-  
 	<br>
 	<div class="container">
 	  <div class="row">
